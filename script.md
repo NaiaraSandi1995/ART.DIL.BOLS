@@ -1,6 +1,6 @@
-# Artigo-Dilma-e-Bolsonaro
+# Artigo-Dilma-e-Bolsonaro//
 DA ONDA RODA A ASCENÇÃO DO CONSERVADORISMO: Análise longitudinal do governo Dilma ao Bolsonaro 
-library(haven)
+
 Latinobarometro_2011_eng <- 
   read_sav("C:/Users/Isabel Lima/Downloads/Latinobarometro_2011_eng.sav")
 Latinobarometro2016Eng_v20170205 <- 
