@@ -95,7 +95,7 @@ ggplot(LB_BR_11, aes(x = factor(Aprovação), y = (..count..)/sum(..count..))) +
     axis.title.y=element_text(), plot.title = element_text(hjust = 0.5),
     )
 
-# Modificando e fazendo gráfico 1#### 
+# Modificando e fazendo gráfico 1#
 
 LB_BR2011 <-LB_BR2011[!is.na(LB_BR2011$Aprovação),]
 LB_BR2011$Aprovação<-as.factor(LB_BR2011$Aprovação)
@@ -118,7 +118,7 @@ gráfico1 <- ggplot(LB_BR2011, aes(x = factor(Aprovação), y = (..count..)/sum(
 gráfico1+ theme_classic()
 
 
-# Modificando e fazendo gráfico 2#### 
+# Modificando e fazendo gráfico 2#
 LB_BR2016 <-LB_BR2016[!is.na(LB_BR2016$Aprovação),]
 LB_BR2016$Aprovação<-as.factor(LB_BR2016$Aprovação)
 levels(LB_BR2016$Aprovação)<-c('Aprova','Não aprova')
@@ -155,7 +155,7 @@ tabelarelano<-table(LB_BR$Ano, LB_BR$Religião)
 tabelarelanopor<-prop.table(tabelarelano,1)*100
 tabelarelanopor
 
-# Católica Evangélica sem especificaçãoo Evangélica batista Evangélica metodista
+# Católica Evangélica sem especificaçãoo Evangélica batista Evangélica metodis
 # 2011 64.9059982                     0.8057296          0.3581021            0.4476276
 # 2016 58.3150985                     0.4376368          0.8752735            0.5470460
 # 
