@@ -1,4 +1,4 @@
-# Artigo-Dilma-e-Bolsonaro//
+Artigo-Dilma-e-Bolsonaro//
 DA ONDA RODA A ASCENÇÃO DO CONSERVADORISMO: Análise longitudinal do governo Dilma ao Bolsonaro 
 
 Latinobarometro_2011_eng <- 
@@ -95,7 +95,7 @@ ggplot(LB_BR_11, aes(x = factor(Aprovação), y = (..count..)/sum(..count..))) +
     axis.title.y=element_text(), plot.title = element_text(hjust = 0.5),
     )
 
-# Modificando e fazendo gráfico 1#
+ Modificando e fazendo gráfico 1#
 
 LB_BR2011 <-LB_BR2011[!is.na(LB_BR2011$Aprovação),]
 LB_BR2011$Aprovação<-as.factor(LB_BR2011$Aprovação)
@@ -118,7 +118,7 @@ gráfico1 <- ggplot(LB_BR2011, aes(x = factor(Aprovação), y = (..count..)/sum(
 gráfico1+ theme_classic()
 
 
-# Modificando e fazendo gráfico 2#
+#Modificando e fazendo gráfico 2#
 LB_BR2016 <-LB_BR2016[!is.na(LB_BR2016$Aprovação),]
 LB_BR2016$Aprovação<-as.factor(LB_BR2016$Aprovação)
 levels(LB_BR2016$Aprovação)<-c('Aprova','Não aprova')
@@ -155,21 +155,21 @@ tabelarelano<-table(LB_BR$Ano, LB_BR$Religião)
 tabelarelanopor<-prop.table(tabelarelano,1)*100
 tabelarelanopor
 
-# Católica Evangélica sem especificaçãoo Evangélica batista Evangélica metodis
-# 2011 64.9059982                     0.8057296          0.3581021            0.4476276
-# 2016 58.3150985                     0.4376368          0.8752735            0.5470460
-# 
-# Evangélica pentecostal Adventista Testemunha de Jeová     Mórmon    Judáica Protestante
-# 2011              0.1790510  9.8478066           1.7905103  0.0000000  7.6096688   0.3581021
-# 2016              0.5470460 14.3326039           0.7658643  0.1094092 10.3938731   0.8752735
-# 
-# Cultos afroamericanos,\n                          Umbanda, etc.
-# 2011                                                       0.3581021
-# 2016                                                       0.6564551
-# 
-# Crente, não pertence a igreja  Agnóstico       Ateu      Outra    Nenhuma
-# 2011                     0.1790510  2.5962399 10.5640107  0.0000000  0.0000000
-# 2016                     0.2188184  2.4070022  9.5185996  0.0000000  0.0000000
+Católica Evangélica sem especificaçãoo Evangélica batista Evangélica metodis
+ 2011 64.9059982                     0.8057296          0.3581021            0.4476276
+ 2016 58.3150985                     0.4376368          0.8752735            0.5470460
+ 
+ Evangélica pentecostal Adventista Testemunha de Jeová     Mórmon    Judáica Protestante
+ 2011              0.1790510  9.8478066           1.7905103  0.0000000  7.6096688   0.3581021
+ 2016              0.5470460 14.3326039           0.7658643  0.1094092 10.3938731   0.8752735
+ 
+ Cultos afroamericanos,\n                          Umbanda, etc.
+ 2011                                                       0.3581021
+ 2016                                                       0.6564551
+ 
+ Crente, não pertence a igreja  Agnóstico       Ateu      Outra    Nenhuma
+ 2011                     0.1790510  2.5962399 10.5640107  0.0000000  0.0000000
+ 2016                     0.2188184  2.4070022  9.5185996  0.0000000  0.0000000
 
 
 
@@ -253,22 +253,22 @@ aproved16<-table(LB_BR_16$Aprovação, LB_BR_16$Escolaridade)
 aproved16por<-prop.table(aproved16,1)*100
 aproved16por
 
-# Analfabeto Básico incompleto Básico completo
-# Aprova       4.545455         40.151515        6.818182
-# Não aprova   6.153846         31.846154        7.384615
-# 
-# Ensino Médio,\n                              Técnico incompleto
-# Aprova                                                           12.121212
-# Não aprova                                                       10.923077
-# 
-# Ensino Médio, \n                              Técnico completo
-# Aprova                                                          22.727273
-# Não aprova                                                      24.307692
-# 
-# Superior incompleto Superior completo
-# Aprova                5.681818          7.954545
-# Não aprova            9.384615         10.000000
-# > 
+ Analfabeto Básico incompleto Básico completo
+ Aprova       4.545455         40.151515        6.818182
+ Não aprova   6.153846         31.846154        7.384615
+ 
+ Ensino Médio,\n                              Técnico incompleto
+ Aprova                                                           12.121212
+ Não aprova                                                       10.923077
+ 
+ Ensino Médio, \n                              Técnico completo
+ Aprova                                                          22.727273
+ Não aprova                                                      24.307692
+ 
+ Superior incompleto Superior completo
+ Aprova                5.681818          7.954545
+ Não aprova            9.384615         10.000000
+ > 
 
 boxplot(LB_BR_11$Idade~LB_BR_11$Aprovação, col=c ("red","blue"))
 boxplot(LB_BR_16$Idade~LB_BR_16$Aprovação, col=c ("red","blue"))
@@ -279,7 +279,7 @@ ggplot(data = LB_BR, aes(x=Ano)) +
 LB_BR
 
 
-#Regressão####
+Regressão####
 LB_Brasil2016$esco
 
 Modelo11<-glm(Aprovação~ Religiões +Sexo+ Idade + Escolaridade,
@@ -410,58 +410,58 @@ summary(predictTrain)
 tapply(predictTrain, train$Aprovação, mean)
 table(train$Aprovação, predictTrain>0.5)
 
-##Gráficos de religião x aprovação####
+Gráficos de religião x aprovação####
 
 
 
 
 
-#2016####
+2016####
 
 tab2 <- table(LB_Brasil2016$Aprovação, LB_Brasil2016$Religiões)
 tab2
-# Católica Evangélica Outras_Religiões Ateu/Agnóstico
-# Aprova          144         83                9             28
-# Não aprova      389        163               29             69
+ Católica Evangélica Outras_Religiões Ateu/Agnóstico
+ Aprova          144         83                9             28
+ Não aprova      389        163               29             69
 
 tab2 <- prop.table(tab2, margin = 1)
 tab2 * 100
-#             Católica Evangélica Outras_Religiões Ateu/Agnóstico
-# Aprova     54.545455  31.439394         3.409091      10.606061
-# Não aprova 59.846154  25.076923         4.461538      10.615385
+             Católica Evangélica Outras_Religiões Ateu/Agnóstico
+ Aprova     54.545455  31.439394         3.409091      10.606061
+ Não aprova 59.846154  25.076923         4.461538      10.615385
 
 tab3 <- table(LB_Brasil2016$Religiões, LB_Brasil2016$Aprovação)
 tab3
 tab3 <- prop.table(tab3, margin = 1)
 tab3 * 100
 
-#                  Aprova Não aprova
-# Católica         27.01689   72.98311
-# Evangélica       33.73984   66.26016
-# Outras_Religiões 23.68421   76.31579
-# Ateu/Agnóstico   28.86598   71.13402
+                  Aprova Não aprova
+ Católica         27.01689   72.98311
+ Evangélica       33.73984   66.26016
+ Outras_Religiões 23.68421   76.31579
+ Ateu/Agnóstico   28.86598   71.13402
 
-###
-# Outro modelo de regressão, 
-# Agora com mais variáveis 
 
-#2016
-#Recodificações ####
-#Ano
+ Outro modelo de regressão, 
+ Agora com mais variáveis 
+
+2016
+Recodificações ####
+Ano
 table(LB_Brasil2016$NUMINVES)
 
-#Aprovação
+Aprovação
 table(LB_Brasil2016$P16STGBS)
 summary(LB_Brasil2016$P16STGBS)
 
-#Não usei?
+Não usei?
 LB_Brasil2016 <-LB_Brasil2016[!is.na(LB_Brasil2016$P16STGBS),]
 
 LB_Brasil2016$Aprovação <-as.factor(LB_Brasil2016$P16STGBS)
 levels(LB_Brasil2016$Aprovação)<-c('Aprova','Não aprova')
 table(LB_Brasil2016$Aprovação)
 
-#Religião
+Religião
 table(LB_Brasil2016$S8)
 LB_Brasil2016$Religiões <- as.factor(LB_Brasil2016$S8)
 LB_Brasil2016$Religiões <- recode(LB_Brasil2016$Religiões, 
@@ -470,42 +470,42 @@ LB_Brasil2016$Religiões <- recode(LB_Brasil2016$Religiões,
 table(LB_Brasil2016$Religiões)
 
 
-#Frequência religiosa
-# 1.- Muy practicante
-# 2.- Practicante
-# 3.- No muy practicante
-# 4.- No practicante
+Frequência religiosa
+ 1.- Muy practicante
+ 2.- Practicante
+ 3.- No muy practicante
+ 4.- No practicante
 table(LB_Brasil2016$S8A)
-#1   2   3   4 
-#166 288 285  78 
+1   2   3   4 
+166 288 285  78 
 LB_Brasil2016$FreqRelig <- as.factor(LB_Brasil2016$S8A)
 LB_Brasil2016$FreqRelig <- recode(LB_Brasil2016$FreqRelig, 0 <- 4, 1 <- 3, 2 <- 2, 3 <- 1 )
 table(LB_Brasil2016$FreqRelig)
-# 0   1   2   3 
-# 78 285 288 166 
+ 0   1   2   3 
+ 78 285 288 166 
 LB_Brasil2016$FreqRelig <- as.numeric(LB_Brasil2016$FreqRelig)
 
 
-#Sexo
+Sexo
 table(LB_Brasil2016$SEXO)
 LB_Brasil2016$SEXO <- as.factor(LB_Brasil2016$SEXO)
 LB_Brasil2016$Sexo <- recode (LB_Brasil2016$SEXO, "Homem" <- 1, "Mulher" <-2 )
 table(LB_Brasil2016$Sexo)
 
-#IDade
+IDade
 table(LB_Brasil2016$Idade)
 LB_Brasil2016$Idade <- as.numeric(LB_Brasil2016$EDAD)
 
-#Escolaridade - quantitativa discreta
+Escolaridade - quantitativa discreta
 table(LB_Brasil2016$REEDUC_1)
-#1   2   3   4   5   6   7 
-#52 313  67 104 218  77  86 
+1   2   3   4   5   6   7 
+52 313  67 104 218  77  86 
 LB_Brasil2016$Escolaridade <- as.numeric(LB_Brasil2016$REEDUC_1)
 
-#ideologia _ Escala de 0-Esqueda a 10 - Direita
+ideologia _ Escala de 0-Esqueda a 10 - Direita
 table(LB_Brasil2016$P17ST)
-# 0   1   2   3   4   5   6   7   8   9  10 
-# 91  31  48  61  68 214  69  58  51  25  97 
+ 0   1   2   3   4   5   6   7   8   9  10 
+ 91  31  48  61  68 214  69  58  51  25  97 
 LB_Brasil2016$Ideologia <- as.numeric(LB_Brasil2016$P17ST)
 
 
@@ -520,24 +520,24 @@ summary(Model1)
 tab_model (Model1, show.ci = F, auto.label = T,
            show.se= F, collapse.se = F, wrap.labels= 60, p.style = "stars")
 
-#Interpretação:
-#*Temos que exponenciar os resultados
-#*A maneira mais fácil de fazer isso é a seguinte:
-#*  Razão de chance - 1 = X *100
+Interpretação:
+Temos que exponenciar os resultados
+A maneira mais fácil de fazer isso é a seguinte:
+  Razão de chance - 1 = X *100
 
-#Ideologia
+Ideologia
 0.66-1
-#[1] -0.16
+[1] -0.16
 -0.16 *100
 
 coefplot(Model1, intercept = F, outerCI = F)
 
-#2011
+2011
 
-#Ano
+Ano
 table(LB_Brasil2011$NUMINVES)
 
-#Aprovação
+Aprovação
 table(LB_Brasil2011$P36ST)
 summary(LB_Brasil2011$P36ST)
 #Não usei?
@@ -547,7 +547,7 @@ LB_Brasil2011$Aprovação <-as.factor(LB_Brasil2011$P36ST)
 levels(LB_Brasil2011$Aprovação)<-c('Aprova','Não aprova')
 table(LB_Brasil2011$Aprovação)
 
-#Religião
+Religião
 table(LB_Brasil2011$S18)
 summary(LB_Brasil2011$S18)
 
@@ -562,44 +562,44 @@ LB_Brasil2011$Religiões<- recode(LB_Brasil2011$S18,
 table(LB_Brasil2011$Religiões)
 
 
-#Frequência religiosa
-# 1.- Muy practicante
-# 2.- Practicante
-# 3.- No muy practicante
-# 4.- No practicante
+Frequência religiosa
+ 1.- Muy practicante
+ 2.- Practicante
+ 3.- No muy practicante
+ 4.- No practicante
 table(LB_Brasil2011$S18.A)
-#1   2   3   4 
-#166 288 285  78 
+1   2   3   4 
+166 288 285  78 
 LB_Brasil2011$FreqRelig <- as.factor(LB_Brasil2011$S18.A)
 LB_Brasil2011$FreqRelig <- recode(LB_Brasil2011$FreqRelig, 0 <- 4, 1 <- 3, 2 <- 2, 3 <- 1 )
 table(LB_Brasil2011$FreqRelig)
-# 0   1   2   3 
-# 78 285 288 166 
+ 0   1   2   3 
+ 78 285 288 166 
 LB_Brasil2011$FreqRelig <- as.numeric(LB_Brasil2011$FreqRelig)
 
 
-#Sexo
+Sexo
 table(LB_Brasil2011$SEXO)
 LB_Brasil2011$SEXO <- as.factor(LB_Brasil2011$SEXO)
 LB_Brasil2011$Sexo <- recode (LB_Brasil2011$SEXO, "Homem" <- 1, "Mulher" <-2 )
 table(LB_Brasil2011$Sexo)
 
-#IDade
+IDade
 table(LB_Brasil2011$EDAD)
 LB_Brasil2011$Idade <- as.numeric(LB_Brasil2011$EDAD)
 
-#Escolaridade - quantitativa discreta
+Escolaridade - quantitativa discreta
 table(LB_Brasil2011$REEDUC_1)
-#1   2   3   4   5   6   7 
-#52 313  67 104 218  77  86 
+1   2   3   4   5   6   7 
+52 313  67 104 218  77  86 
 LB_Brasil2011$Escolaridade <- as.numeric(LB_Brasil2011$REEDUC1)
 
-#ideologia _ Escala de 0-Esqueda a 10 - Direita
+ideologia _ Escala de 0-Esqueda a 10 - Direita
 table(LB_Brasil2011$P76ST)
 #Escala Izquierda-Derecha
 
-# 0   1   2   3   4   5   6   7   8   9  10 
-# 91  31  48  61  68 214  69  58  51  25  97 
+ 0   1   2   3   4   5   6   7   8   9  10 
+ 91  31  48  61  68 214  69  58  51  25  97 
 LB_Brasil2011$Ideologia <- as.numeric(LB_Brasil2011$P76ST)
 
 
@@ -614,75 +614,75 @@ summary(Model1)
 tab_model (Model2, show.ci = F, auto.label = T,
            show.se= F, collapse.se = F, wrap.labels= 60, p.style = "stars")
 
-#2019 Bolsonaro####
+2019 Bolsonaro####
 
-# Variável dependente: 
-#   M1. Falando em geral do atual governo, como o(a) sr./sra. avalia o trabalho que o Presidente Jair Bolsonaro está realizando [Ler alternativas]
-# (1) Muito bom (2) Bom (3) Nem bom, nem mau (regular)
-# (4) Mau (5) Muito mau (péssimo)
-# (888888) Não sabe [NÃO LER] (988888) Não responde [NÃO LER]
+Variável dependente: 
+   M1. Falando em geral do atual governo, como o(a) sr./sra. avalia o trabalho que o Presidente Jair Bolsonaro está realizando [Ler alternativas]
+ (1) Muito bom (2) Bom (3) Nem bom, nem mau (regular)
+ (4) Mau (5) Muito mau (péssimo)
+ (888888) Não sabe [NÃO LER] (988888) Não responde [NÃO LER]
 
-#Manterei a variável dependente como está, porque queremos testar a reprovação, 
-#Para identificar quem é que mais reprova esse presidente. 
+Manterei a variável dependente como está, porque queremos testar a reprovação, 
+Para identificar quem é que mais reprova esse presidente. 
 
 table(X2019$m1)
-# 1   2   3   4   5 
-# 194 576 514  83  83
+ 1   2   3   4   5 
+ 194 576 514  83  83
 
 X2019$AprovaçãoB <- as.numeric(X2019$m1)
 
-#Sexo
-#1- homem e 2- mulher
+Sexo
+1- homem e 2- mulher
 X2019$Sexo <- as.factor(X2019$q1)
 
-#Idade (Quantitativa contínua)
+Idade (Quantitativa contínua)
 X2019$Idade <- as.numeric(X2019$q2)
 
-#Escolaridade (quantitativa discreta)
+Escolaridade (quantitativa discreta)
 X2019$Escolaridade <- as.numeric(X2019$ed)
 
-#Religião
+Religião
 
-# Q3CN. Qual a sua religião, se tiver? [Não leia as alternativas]
-# 
-# (01) Católico [Siga]
-# (02) Protestante Tradicional ou Evangélica não pentecostal
-#(Batista, Calvinista, Luterano,Metodista, Presbiteriano, Discípulo de Cristo, 
-#Anglicano, Episcopal, Igreja Cristã Reformada,
-#   Igreja Morava, Menonita, Irmãos em Cristo; Igreja do Nazareno) [Siga]
-# (03) Outra religião oriental não cristã (Muçulmano, Budista, Induísta, Taoísta, Confuciano,
-#  Baha’i) [Siga]
-# (05) Evangélica pentecostal (Pentecostal, Igreja de Deus, Assembleias de Deus, Igreja
-#    Universal do Reino de Deus, Igreja Quadrangular, Igreja de Cristo, Congregação Cristã,
-#   Adventista, Adventista de Sétimo Dia, Sara Nossa Terra, Carismático não Católico, Bola de
-#  Neve, etc) [Siga]
-# (07) Religiões Tradicionais ou nativas (Santeria, Candomblé, Umbanda, Vodu, Rastafari,
-#    religiões mayas, Santo Daime, Esotérica) [Siga]
-# (1501) Espírita kardecista [Siga]
-# (04) Nenhuma (Acredita em uma entidade suprema mas não pertence à religião nenhuma)
-# [Siga]
-# (11) Agnóstico ou ateu/não acredita em Deus [VÁ PARA Q5B]
-# (77) Outra [Siga]
-# (888888) Não sabe [NÃO LER] [Siga]
-# (988888) Não responde [NÃO LER] [Siga]
+ Q3CN. Qual a sua religião, se tiver? [Não leia as alternativas]
+ 
+ (01) Católico [Siga]
+ (02) Protestante Tradicional ou Evangélica não pentecostal
+(Batista, Calvinista, Luterano,Metodista, Presbiteriano, Discípulo de Cristo, 
+Anglicano, Episcopal, Igreja Cristã Reformada,
+   Igreja Morava, Menonita, Irmãos em Cristo; Igreja do Nazareno) [Siga]
+ (03) Outra religião oriental não cristã (Muçulmano, Budista, Induísta, Taoísta, Confuciano,
+  Baha’i) [Siga]
+ (05) Evangélica pentecostal (Pentecostal, Igreja de Deus, Assembleias de Deus, Igreja
+    Universal do Reino de Deus, Igreja Quadrangular, Igreja de Cristo, Congregação Cristã,
+   Adventista, Adventista de Sétimo Dia, Sara Nossa Terra, Carismático não Católico, Bola de
+  Neve, etc) [Siga]
+ (07) Religiões Tradicionais ou nativas (Santeria, Candomblé, Umbanda, Vodu, Rastafari,
+    religiões mayas, Santo Daime, Esotérica) [Siga]
+ (1501) Espírita kardecista [Siga]
+ (04) Nenhuma (Acredita em uma entidade suprema mas não pertence à religião nenhuma)
+ [Siga]
+ (11) Agnóstico ou ateu/não acredita em Deus [VÁ PARA Q5B]
+ (77) Outra [Siga]
+ (888888) Não sabe [NÃO LER] [Siga]
+ (988888) Não responde [NÃO LER] [Siga]
 
-#Recodificação
-# 1- Católica (1), 2- EvangélicoNãoPet.(2), 3- EvangélicoPet.(5), 4- Outras religioões 
-# (3,7,1501,77), 5- Agnóstico/Ateu (4,11)
+Recodificação
+ 1- Católica (1), 2- EvangélicoNãoPet.(2), 3- EvangélicoPet.(5), 4- Outras religioões 
+ (3,7,1501,77), 5- Agnóstico/Ateu (4,11)
 
 table(X2019$q3cn)
-#   1    2    3    4    5    7   11   77 1501 
-# 746  140    3  153  323   22   25   34   36 
+   1    2    3    4    5    7   11   77 1501 
+ 746  140    3  153  323   22   25   34   36 
 
 X2019$Religião <- as.factor(X2019$q3cn)
 X2019$Religião <- recode (X2019$Religião, 'Católica' <- 1, 'Protestante' <- c(2,5), 
                'Outras.Religiões' <- c(3,7,1501,77),
                           'Agnóstico/Ateu'<- c(4,11))
 table(X2019$Religião)
-# Católica      Evang.N.Pet        Evang.Pet Outras.Religiões   Agnóstico/Ateu 
-# 746              140              323               95              178 
+ Católica      Evang.N.Pet        Evang.Pet Outras.Religiões   Agnóstico/Ateu 
+ 746              140              323               95              178 
 
-#Regressão Bolsaonaro####
+Regressão Bolsaonaro####
 modelBol <- lm(AprovaçãoB ~ Religião + Sexo + Idade + Escolaridade, data = X2019)
 
 tab_model(modelBol, show.ci = F, auto.label = T,
