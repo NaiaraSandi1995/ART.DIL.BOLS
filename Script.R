@@ -1,8 +1,8 @@
 library(haven)
 Latinobarometro_2011_eng <- 
-  read_sav("C:/Users/Isabel Lima/Downloads/Latinobarometro_2011_eng.sav")
+  read_sav("Latinobarometro_2011_eng.sav")
 Latinobarometro2016Eng_v20170205 <- 
-  read_sav("C:/Users/Isabel Lima/Downloads/Latinobarometro2016Eng_v20170205.sav")
+  read_sav("Latinobarometro2016Eng_v20170205.sav")
 
 library(tidyverse)
 
@@ -186,7 +186,12 @@ barplot(tabelarelanopor, beside = TRUE,
         col = c("#AD0805","#400819"),
         legend=rownames(tabelarelanopor),
         main ="Religião x Ano")
-ggplot(LB_BR, aes(x = Religião, y = (..count..)/sum(..count..), fill=Ano))+
+
+####################
+table(LB_BR$Religiões)
+#gráfico com problema#####
+
+ggplot(LB_BR, aes(x = Religiao_Recode, y = (..count..)/sum(..count..), fill=Ano))+
   geom_bar(color="black", position=position_dodge())+
   geom_text(aes(y = ((..count..)/sum(..count..)), 
                 label = scales::percent((..count..)/sum(..count..))), 
@@ -199,6 +204,27 @@ ggplot(LB_BR, aes(x = Religião, y = (..count..)/sum(..count..), fill=Ano))+
     axis.title.y=element_text(), plot.title = element_text(hjust = 0.5),
   )
 
+table(LB_BR$Religiao_Recode)
+
+library(dplyr)
+
+LB_BR <- LB_BR %>%
+  mutate(Religiao_Recode = case_when(
+    Religião == "Católica" ~ "Católica",
+    Religião %in% c(
+      "Evangélica sem especificaçãoo",
+      "Evangélica batista",
+      "Evangélica metodista",
+      "Evangélica pentecostal",
+      "Adventista",
+      "Protestante"
+    ) ~ "Evangélica",
+    Religião %in% c("Agnóstico", "Ateu", "Nenhuma") ~ "Nenhuma/Ateu",
+    TRUE ~ "Outras"
+  ))
+
+
+###########################
 aprovsex11<-table(LB_BR_11$Sexo, LB_BR_11$Aprovação)
 aprovsex11pr<-prop.table(aprovsex11,1)*100
 aprovsex11pr
@@ -221,6 +247,33 @@ OBJ2 <- ggplot(data = LB_BR, aes(x=Ano)) +
   facet_grid(Aprovação~Sexo)
 
 OBJ2 + theme_classic()
+
+##########
+#Gráficonovo-outubro2023######
+# Carregue as bibliotecas necessárias
+library(ggplot2)
+library(dplyr)
+
+# Calcula as porcentagens dentro de cada grupo
+LB_BR <- LB_BR %>%
+  group_by(Ano, Aprovação, Sexo) %>%
+  summarise(n = n()) %>%
+  group_by(Ano) %>%
+  mutate(Percentagem = n / sum(n) * 100)
+
+# Crie o gráfico de barras com rótulos de texto
+OBJ2 <- ggplot(data = LB_BR, aes(x = Ano, y = Percentagem)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  geom_text(aes(label = sprintf("%.0f%%", Percentagem)), 
+            vjust = -0.5, size = 2.5, position = position_dodge(width = 0.7)) + # Adiciona os rótulos de texto
+  facet_grid(Aprovação ~ Sexo) +
+  scale_y_continuous(labels = scales::percent_format(scale = 0)) +
+  labs(y = "Percentagem")
+
+# Exiba o gráfico
+OBJ2 + theme_classic()
+
+#############
 
 aprovrel11<-table(LB_BR_11$Aprovação, LB_BR_11$Religião)
 barplot(aprovrel11por, beside = TRUE,
@@ -673,6 +726,7 @@ table(X2019$q3cn)
 # 746  140    3  153  323   22   25   34   36 
 
 X2019$Religião <- as.factor(X2019$q3cn)
+
 X2019$Religião <- recode (X2019$Religião, 'Católica' <- 1, 'Protestante' <- c(2,5), 
                'Outras.Religiões' <- c(3,7,1501,77),
                           'Agnóstico/Ateu'<- c(4,11))
@@ -704,7 +758,19 @@ ols_vif_tol(modelBol)
 par(mfrow=c(2,2))
 plot(modelBol)
 
+library(ggplot2)
+library(ggfortify)
+obj1 <- autoplot(modelBol,
+                 which = 1:3,
+                 nrow = 2,
+                 ncol = 2
+) 
+
+obj1 + theme_classic() 
+
 X2019$AprovaçãoB
+
+X2019 <- drop_na(X2019, AprovaçãoB)
 
 obj <- ggplot(X2019, aes(x = factor(AprovaçãoB), 
                          y = (..count..)/sum(..count..), 
@@ -714,6 +780,16 @@ obj <- ggplot(X2019, aes(x = factor(AprovaçãoB),
                 label = scales::percent((..count..)/sum(..count..))), 
             stat = "count", vjust = -0.25) 
 
+###
+obj <- ggplot(X2019, aes(x = factor(AprovaçãoB), 
+                         y = (..count..)/sum(..count..))) +  
+  geom_bar(width = 0.8) +
+  geom_text(aes(y = ((..count..)/sum(..count..)), 
+                label = scales::percent(round((..count..)/sum(..count..), 2))),
+            stat = "count", vjust = -0.25) 
+
+
+
 obj  + 
   labs(title = "Escala de reprovação Bolsonorabo, 2019", 
        y = "Porcentagem", x = "Escala de reprovação
@@ -722,3 +798,81 @@ obj  +
     axis.text.y=element_blank(), axis.ticks=element_blank(),
     axis.title.y=element_text(), plot.title = element_text(hjust = 0.5)) +
   theme_classic()
+
+
+#######
+# Carregue as bibliotecas necessárias
+library(ggplot2)
+library(dplyr)
+
+# Crie o gráfico de barras com os valores em percentuais
+obj <- ggplot(X2019, aes(x = factor(AprovaçãoB), 
+                         y = ((..count..)/sum(..count..)) * 100)) +  
+  geom_bar(width = 0.8) +
+  geom_text(aes(y = ((..count..)/sum(..count..)) * 100, 
+                label = scales::percent(round((..count..)/sum(..count..), 2))),
+            stat = "count", vjust = -0.25) 
+
+# Adicione os rótulos e formate o gráfico
+obj + 
+  labs(title = "Escala de reprovação Bolsonaro, 2019", 
+       y = "Porcentagem (%)", x = "Escala de reprovação\n1 - Aprovação a 5 - Reprovação") +
+  theme(
+    axis.text.y = element_blank(), axis.ticks = element_blank(),
+    axis.title.y = element_text(), plot.title = element_text(hjust = 0.5)) +
+  theme_classic()
+
+
+
+#########ÚLTIMO GRÁFICO 
+# 
+# > table(LB_Brasil2016$Religiões)
+# 
+#         Católica       Evangélica Outras_Religiões 
+#              533              246               38 
+#   Ateu/Agnóstico 
+#               97 
+# > table(LB_Brasil2011$Religiões)
+# 
+#         Católica       Evangélica Outras_Religiões 
+#              725              228               39 
+#   Ateu/Agnóstico 
+#              125 
+
+obj <- data.frame(table(LB_Brasil2016$Religiões))
+obj2011 <- data.frame(table(LB_Brasil2011$Religiões)) 
+
+
+###########
+
+# Crie um dataframe com seus dados
+dados <- data.frame(
+  Ano = rep(c(2011, 2016), each = 4),
+  Religião = rep(c("Católica", "Evangélica", "Outras_Religiões", "Ateu/Agnóstico"), times = 2),
+  Porcentagem = c(36, 11, 2, 6, 26, 12, 2, 5)
+)
+
+# Reordene as categorias de Religião em ordem decrescente com base em Porcentagem
+dados$Religião <- reorder(dados$Religião, -dados$Porcentagem)
+
+# Crie o gráfico
+gráfico <- ggplot(dados, aes(x = Religião, y = Porcentagem, fill = factor(Ano))) +
+  geom_bar(stat = "identity", color = "black", position = position_dodge()) +
+  geom_text(aes(label = paste(Porcentagem,"%"), group = Ano),
+            position = position_dodge(width = 0.9), vjust = -0.2, size = 3.5) +
+  scale_y_continuous(limits = c(0, 40), breaks = seq(0, 40, 5)) +
+  labs(title = "Religião: 2011 x 2016", y = "Porcentagem", x = "Religião", fill = "Ano") +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title.y = element_text(),
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  scale_fill_manual(values = c("2011" = "grey20", "2016" = "grey70"))
+
+gráfico + theme_classic() + theme(
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  axis.title.y = element_text(),
+  plot.title = element_text(hjust = 0.5)
+) 
